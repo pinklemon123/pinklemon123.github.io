@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>留言板 | PinkLemon</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+<header class="site-header blur-bg">
+  <div class="container">
+    <a class="brand" href="index.html">🍋 PinkLemon</a>
+    <nav class="nav" aria-label="主导航">
+      <ul class="nav-menu show">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="projects.html">项目</a></li>
+        <li><a href="about.html">关于</a></li>
+        <li><a href="guestbook.html" aria-current="page">留言</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="page-head">
+    <div class="container">
+      <h1>留言板</h1>
+      <p class="lead">欢迎留言、交流想法或提出建议！需要 GitHub 账号登录。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" id="comments">
+      <!-- 将下方 giscus 脚本替换为你在 giscus.app 生成的版本 -->
+      <script src="https://giscus.app/client.js"
+        data-repo="pinklemon123/pinklemon123.github.io"
+        data-repo-id="REPLACE_REPO_ID"
+        data-category="General"
+        data-category-id="REPLACE_CATEGORY_ID"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container tiny">© <span id="year"></span> PinkLemon.</div>
+</footer>
+<script src="assets/script.js" defer></script>
+</body>
+</html>
