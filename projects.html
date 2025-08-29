@@ -37,54 +37,66 @@
   </div>
 </section>
 
-<section class="section">
-  <div class="container project-grid">
-    <article id="graph-insight" class="project">
-      <div class="thumb">
-        <img alt="图谱与网络" loading="lazy"
-             src="https://images.unsplash.com/photo-1557800636-894a64c1696f?q=80&w=1400&auto=format&fit=crop" />
-      </div>
-      <div class="content">
-        <h2>Graph Insight</h2>
-        <p>图数据 ETL、Louvain 社区发现、最短路径与中心性分析，以及可视化面板（D3.js）。</p>
-        <ul class="tags">
-          <li>Python</li><li>Neo4j</li><li>D3.js</li><li>Docker</li>
-        </ul>
-        <p><a class="btn small" href="https://github.com/pinklemon123" target="_blank" rel="noopener">GitHub</a></p>
+<section style="max-width:1100px; margin:40px auto; padding:0 20px;">
+  <h1 style="margin-bottom:20px;">Projects</h1>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px;">
+    <!-- Pink Mood Garden -->
+    <article style="background:#0b0f1a; border:1px solid #1e2a44; border-radius:16px; overflow:hidden;">
+      <img alt="Pink Mood Garden preview"
+           src="https://images.unsplash.com/photo-1514517220032-1212f0b0b1ff?q=80&w=1200&auto=format&fit=crop"
+           style="width:100%; height:160px; object-fit:cover;">
+      <div style="padding:14px 16px;">
+        <h3 style="margin:0 0 6px;">Pink Mood Garden</h3>
+        <p style="opacity:.85; margin:0 0 12px;">
+          轻量粉色系情绪花园：匿名心情、小纸条、心情日历、PWA。
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="https://pink-mood-garden.vercel.app/" target="_blank" rel="noopener">Live Demo</a>
+          <a href="https://github.com/pinklemon123/pink-mood-garden" target="_blank" rel="noopener">GitHub</a>
+        </div>
       </div>
     </article>
 
-    <article id="daily-news" class="project">
-      <div class="thumb">
-        <img alt="新闻聚合" loading="lazy"
-             src="https://images.unsplash.com/photo-1519337265831-281ec6cc8514?q=80&w=1400&auto=format&fit=crop" />
-      </div>
-      <div class="content">
-        <h2>Daily News Generator</h2>
-        <p>结合 Selenium 抓取与 LLM 摘要，生成静态 HTML 新闻页并自动插入封面图。</p>
-        <ul class="tags">
-          <li>Python</li><li>BeautifulSoup</li><li>LLM</li><li>HTML</li>
-        </ul>
-        <p><a class="btn small" href="https://github.com/pinklemon123" target="_blank" rel="noopener">代码示例</a></p>
+    <!-- Chat on Vercel -->
+    <article style="background:#0b0f1a; border:1px solid #1e2a44; border-radius:16px; overflow:hidden;">
+      <img alt="Chat on Vercel preview"
+           src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop"
+           style="width:100%; height:160px; object-fit:cover;">
+      <div style="padding:14px 16px;">
+        <h3 style="margin:0 0 6px;">Chat-on-Vercel</h3>
+        <p style="opacity:.85; margin:0 0 12px;">
+          纯前端/极简聊天 UI，支持提示词配置与页面联动优化。
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="https://chat-on-vercel.vercel.app/" target="_blank" rel="noopener">Live Demo</a>
+          <a href="https://github.com/pinklemon123/chat-on-vercel" target="_blank" rel="noopener">GitHub</a>
+        </div>
       </div>
     </article>
 
-    <article id="unity-scene" class="project">
-      <div class="thumb">
-        <img alt="Unity 场景" loading="lazy"
-             src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1400&auto=format&fit=crop" />
-      </div>
-      <div class="content">
-        <h2>Unity 互动场景</h2>
-        <p>导入 Mixamo 骨骼、相机跟随脚本与水波 Shader，演示 3D 场景交互。</p>
-        <ul class="tags">
-          <li>Unity</li><li>Blender</li><li>Shader</li>
-        </ul>
-        <p><a class="btn small" href="https://b23.tv/7z9fh8S" target="_blank" rel="noopener">B站演示</a></p>
+    <!-- Daily News Agent -->
+    <article style="background:#0b0f1a; border:1px solid #1e2a44; border-radius:16px; overflow:hidden;">
+      <img alt="Daily News Agent preview"
+           src="https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=1200&auto=format&fit=crop"
+           style="width:100%; height:160px; object-fit:cover;">
+      <div style="padding:14px 16px;">
+        <h3 style="margin:0 0 6px;">Daily News Agent</h3>
+        <p style="opacity:.85; margin:0 0 12px;">
+          爬取网页→AI 总结→生成 HTML 的一键流水线（多仓协同）。
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="https://github.com/pinklemon123/news-1-creat" target="_blank" rel="noopener">news-1-creat</a>
+          <a href="https://github.com/pinklemon123/news-00-creat" target="_blank" rel="noopener">news-00-creat</a>
+          <a href="https://github.com/pinklemon123/news-creat" target="_blank" rel="noopener">news-creat</a>
+        </div>
       </div>
     </article>
   </div>
+
+  <!-- 图片来源：全部 Unsplash 背景图，便于商用/个人站。可按需替换为你自己的截图 -->
 </section>
+
 
 <section class="section gradient">
   <div class="container">
