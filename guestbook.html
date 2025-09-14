@@ -9,24 +9,46 @@
   <style>
     :root{
       --bg:#0b0c10; --panel:#111218; --text:#e9eef4; --muted:#aab3bf; --line:#1a1c25;
-      --accent:#7dd3fc; --accent-2:#f472b6; --shadow:rgba(0,0,0,.35); --radius:18px; --maxw:780px;
+      --shadow:rgba(0,0,0,.35); --radius:18px; --maxw:780px;
     }
     @media (prefers-color-scheme: light){
       :root{ --bg:#f7fafc; --panel:#fff; --text:#1a1f2b; --muted:#5b6472; --line:#e8edf3; --shadow:rgba(2,6,23,.08); }
     }
     *{box-sizing:border-box}
-    body{margin:0;background:
-      radial-gradient(1000px 500px at -10% 0%, rgba(125,211,252,.13), transparent 60%),
-      radial-gradient(900px 500px at 110% 100%, rgba(244,114,182,.13), transparent 60%),
-      var(--bg); color:var(--text);
-      font:16px/1.7 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Arial, sans-serif;}
+    body{
+      margin:0;
+      background:
+        radial-gradient(1000px 500px at -10% 0%, rgba(125,211,252,.13), transparent 60%),
+        radial-gradient(900px 500px at 110% 100%, rgba(244,114,182,.13), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      font:16px/1.7 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Arial, sans-serif;
+    }
     a{color:inherit;text-decoration:none}
     .wrap{max-width:var(--maxw);margin:0 auto;padding:24px 20px 56px}
     .nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
     .chip{padding:9px 12px;border:1px solid var(--line);border-radius:999px}
-    .panel{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.03)), var(--panel);box-shadow:0 18px 36px var(--shadow);padding:20px}
+    .panel{
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.03)), var(--panel);
+      box-shadow:0 18px 36px var(--shadow);padding:20px
+    }
     .muted{color:var(--muted)}
-    .hr{height:1px;background:linear-gradient(90deg, transparent, var(--line), transparent);margin:28px 0}
+    .hr{height:1px;background:linear-gradient(90deg, transparent, var(--line), transparent);margin:20px 0}
+    .tabs{display:flex;gap:10px;flex-wrap:wrap}
+    .tab-btn{
+      padding:10px 14px;border-radius:999px;border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.03));
+      cursor:pointer;font-weight:700
+    }
+    .tab-btn[aria-selected="true"]{
+      border-color:transparent;
+      box-shadow:0 10px 24px var(--shadow);
+      background:radial-gradient(200% 100% at 0% 0%, rgba(125,211,252,.2), transparent 60%),
+                 radial-gradient(200% 100% at 100% 100%, rgba(244,114,182,.2), transparent 60%),
+                 linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.03));
+    }
+    .visually-hidden{position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px, 1px, 1px, 1px);}
     .form{display:grid;gap:12px}
     input, textarea{
       width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--line);
@@ -47,6 +69,7 @@
     .item .meta{font-size:13px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
     .item .name{font-weight:700}
     .empty{color:var(--muted);text-align:center;padding:16px;border:1px dashed var(--line);border-radius:14px}
+    .section{margin-top:10px}
   </style>
 </head>
 <body>
@@ -60,72 +83,124 @@
       </nav>
     </header>
 
-    <div class="panel">
-      <h1>Guestbook</h1>
-      <p class="muted">欢迎留言 😊 本页是纯前端实现：留言会保存在你浏览器的 <code>localStorage</code>（仅自己可见）。如果你想公开留言给我，可以使用
-        <a href="https://github.com/pinklemon123/pinklemon123.github.io/issues/new?title=Guestbook%20Entry&labels=guestbook" target="_blank" rel="noopener">GitHub Issues</a>。</p>
+    <div class="panel" role="region" aria-labelledby="gb-title">
+      <h1 id="gb-title">Guestbook</h1>
+      <p class="muted">两种方式留言：<strong>GitHub 登录</strong>（公开，显示在 Discussions）或<strong>本地留言</strong>（仅你自己在本机可见）。</p>
       <div class="hr"></div>
 
-      <form class="form" id="gb-form">
-        <input id="name" placeholder="昵称（必填）" required />
-        <input id="link" placeholder="个人链接（可选，例如 GitHub/博客）" />
-        <textarea id="msg" rows="4" placeholder="留言内容（必填）" required></textarea>
-        <button type="submit">提交留言</button>
-      </form>
+      <!-- Tabs -->
+      <div class="tabs" role="tablist" aria-label="留言方式">
+        <button class="tab-btn" id="tab-giscus" role="tab" aria-selected="true" aria-controls="panel-giscus">GitHub 留言</button>
+        <button class="tab-btn" id="tab-local" role="tab" aria-selected="false" aria-controls="panel-local">本地留言</button>
+      </div>
 
-      <div class="list" id="gb-list" aria-live="polite"></div>
-      <p class="empty" id="gb-empty" hidden>还没有本地留言，做第一个吧！</p>
+      <!-- Panel: Giscus -->
+      <section id="panel-giscus" class="section" role="tabpanel" aria-labelledby="tab-giscus">
+        <div id="giscus_container">
+          <script src="https://giscus.app/client.js"
+            data-repo="pinklemon123/pinklemon123.github.io"
+            data-repo-id="R_kgDOPj-aOA"
+            data-category="lemonの留言板"
+            data-category-id="DIC_kwDOPj-aOM4Cuk73"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="dark_protanopia"
+            data-lang="zh-CN"
+            crossorigin="anonymous"
+            async>
+          </script>
+          <noscript><p class="muted">需要启用 JavaScript 才能加载 Giscus 评论。</p></noscript>
+        </div>
+      </section>
 
-      <div class="hr"></div>
-      <p class="muted">Tips：如果你清除了浏览器数据或更换设备，本地留言会消失；公开留言请使用上面的 GitHub Issues。</p>
+      <!-- Panel: Local guestbook -->
+      <section id="panel-local" class="section" role="tabpanel" aria-labelledby="tab-local" hidden>
+        <p class="muted">本地留言仅存储在你浏览器的 <code>localStorage</code> 中，不会上传到服务器。</p>
+        <form class="form" id="gb-form" autocomplete="off">
+          <label class="visually-hidden" for="name">昵称</label>
+          <input id="name" placeholder="昵称（必填）" required />
+          <label class="visually-hidden" for="link">个人链接</label>
+          <input id="link" placeholder="个人链接（可选，例如 GitHub/博客）" />
+          <label class="visually-hidden" for="msg">留言内容</label>
+          <textarea id="msg" rows="4" placeholder="留言内容（必填）" required></textarea>
+          <button type="submit">提交本地留言</button>
+        </form>
+
+        <div class="list" id="gb-list" aria-live="polite"></div>
+        <p class="empty" id="gb-empty" hidden>还没有本地留言，做第一个吧！</p>
+      </section>
     </div>
   </div>
 
   <script>
-    // 极简本地留言本：保存在 localStorage（仅本机可见）
+    // --- Tabs ---
+    const tabG = document.getElementById('tab-giscus');
+    const tabL = document.getElementById('tab-local');
+    const panelG = document.getElementById('panel-giscus');
+    const panelL = document.getElementById('panel-local');
+
+    function activate(which){
+      const isG = which === 'giscus';
+      tabG.setAttribute('aria-selected', isG ? 'true' : 'false');
+      tabL.setAttribute('aria-selected', isG ? 'false' : 'true');
+      panelG.hidden = !isG;
+      panelL.hidden = isG;
+    }
+    tabG.addEventListener('click', ()=>activate('giscus'));
+    tabL.addEventListener('click', ()=>activate('local'));
+
+    // --- Local guestbook (private) ---
     const KEY = 'guestbook:pinklemon';
     const listEl = document.getElementById('gb-list');
     const emptyEl = document.getElementById('gb-empty');
     const form = document.getElementById('gb-form');
 
-    function load(){
-      const arr = JSON.parse(localStorage.getItem(KEY) || '[]');
-      render(arr);
+    function loadLocal(){
+      try{
+        const arr = JSON.parse(localStorage.getItem(KEY) || '[]');
+        renderLocal(arr);
+      }catch(e){
+        renderLocal([]);
+      }
     }
-    function save(arr){
+    function saveLocal(arr){
       localStorage.setItem(KEY, JSON.stringify(arr));
-      render(arr);
+      renderLocal(arr);
     }
-    function render(arr){
+    function escapeHTML(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+    function renderLocal(arr){
       listEl.innerHTML = '';
       if(!arr.length){ emptyEl.hidden = false; return; }
       emptyEl.hidden = true;
-      arr.sort((a,b)=>b.t-a.t).forEach((it, idx)=>{
+      arr.sort((a,b)=>b.t-a.t).forEach(it=>{
         const div = document.createElement('div');
         div.className = 'item';
         const when = new Date(it.t).toLocaleString();
-        const name = it.name.replace(/[<>]/g,'');
-        const msg = it.msg.replace(/</g,'&lt;').replace(/>/g,'&gt;');
-        const link = it.link && it.link.trim() ? `<a href="${it.link}" target="_blank" rel="noopener">${it.link}</a>`:'';
+        const link = it.link && it.link.trim() ? ` · <a href="${escapeHTML(it.link)}" target="_blank" rel="noopener">${escapeHTML(it.link)}</a>`:'';
         div.innerHTML = `
-          <div class="meta"><span class="name">${name}</span> · <span>${when}</span> ${link? '· '+link : ''}</div>
-          <div class="content" style="margin-top:6px">${msg}</div>
+          <div class="meta"><span class="name">${escapeHTML(it.name)}</span> · <span>${when}</span>${link}</div>
+          <div class="content" style="margin-top:6px">${escapeHTML(it.msg)}</div>
         `;
         listEl.appendChild(div);
       });
     }
-    form.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const link = document.getElementById('link').value.trim();
-      const msg  = document.getElementById('msg').value.trim();
-      if(!name || !msg) return alert('请填写昵称和留言内容');
-      const arr = JSON.parse(localStorage.getItem(KEY) || '[]');
-      arr.push({name, link, msg, t: Date.now()});
-      save(arr);
-      form.reset();
-    });
-    load();
+    if (form){
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const link = document.getElementById('link').value.trim();
+        const msg  = document.getElementById('msg').value.trim();
+        if(!name || !msg) return alert('请填写昵称和留言内容');
+        const arr = JSON.parse(localStorage.getItem(KEY) || '[]');
+        arr.push({name, link, msg, t: Date.now()});
+        saveLocal(arr);
+        form.reset();
+      });
+    }
+    loadLocal();
   </script>
 </body>
 </html>
