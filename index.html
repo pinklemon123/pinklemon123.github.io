@@ -1,149 +1,239 @@
-
 <!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>首页 | PinkLemon 个人网站</title>
-  <meta name="description" content="PinkLemon 的个人网站：项目、文章与联系信息。" />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-  <link rel="stylesheet" href="assets/style.css" />
-  <script defer src="assets/script.js"></script>
+  <title>Pinklemon · Home</title>
+  <meta name="description" content="Pinklemon 的个人站 · 项目、笔记与正在折腾的东西" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Pinklemon · Home" />
+  <meta property="og:description" content="项目、笔记与正在折腾的东西" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://pinklemon123.github.io/og.png" />
+  <meta name="color-scheme" content="light dark" />
+
+  <style>
+    :root{
+      --bg: #0b0c10;
+      --panel: #111218;
+      --text: #e9eef4;
+      --muted: #aab3bf;
+      --line: #1a1c25;
+      --accent: #7dd3fc;   /* 天蓝 */
+      --accent-2:#f472b6;  /* 粉紫 */
+      --shadow: rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --maxw: 1080px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f7fafc;
+        --panel:#ffffff;
+        --text:#1a1f2b;
+        --muted:#5b6472;
+        --line:#e8edf3;
+        --shadow: rgba(2,6,23,.08);
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font:16px/1.7 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(125,211,252,.15), transparent 60%),
+                  radial-gradient(1000px 600px at 110% 0%, rgba(244,114,182,.14), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:24px 20px 56px}
+
+    /* header */
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:12px;margin-bottom:16px;
+    }
+    .brand{font-weight:800;letter-spacing:.2px}
+    .navlinks{display:flex;gap:12px;flex-wrap:wrap}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:9px 12px;border:1px solid var(--line);border-radius:999px;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.02));
+      transition:.25s ease transform, box-shadow .25s ease, border-color .2s ease;
+    }
+    .chip:hover{transform:translateY(-2px);box-shadow:0 10px 24px var(--shadow);border-color:transparent}
+    .chip.badge{background:linear-gradient(135deg, rgba(125,211,252,.2), rgba(244,114,182,.2));border:none}
+
+    /* hero */
+    .hero{
+      position:relative;overflow:hidden;
+      display:grid;grid-template-columns:1.1fr .9fr;gap:22px;
+      padding:28px;border-radius:var(--radius);
+      background:
+        radial-gradient(600px 160px at 0% 0%, rgba(125,211,252,.18), transparent 60%),
+        radial-gradient(600px 160px at 100% 100%, rgba(244,114,182,.18), transparent 60%),
+        var(--panel);
+      border:1px solid var(--line);
+      box-shadow:0 20px 50px var(--shadow);
+    }
+    @media (max-width:880px){.hero{grid-template-columns:1fr}}
+    .hero h1{margin:6px 0 6px;font-size:clamp(24px,4vw,36px);line-height:1.2}
+    .muted{color:var(--muted)}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+
+    /* cards */
+    .section{margin-top:34px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media (max-width:960px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.cards{grid-template-columns:1fr}}
+    .card{
+      position:relative;overflow:hidden;
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.03)), var(--panel);
+      padding:18px;min-height:140px;
+      transition:transform .25s ease, box-shadow .25s ease, border-color .2s ease, background .2s ease;
+      will-change:transform;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 24px 40px var(--shadow);border-color:transparent}
+    .card h3{margin:2px 0 6px;font-size:18px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .tag{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+    .more{display:inline-flex;align-items:center;gap:8px;margin-top:8px;font-weight:600}
+    .more .chev{transition:transform .2s ease}
+    .card:hover .chev{transform:translateX(4px)}
+
+    /* shiny sweep on hover */
+    .card::after{
+      content:"";position:absolute;inset:-30%;
+      background:conic-gradient(from 180deg at 50% 50%,
+        transparent 0 70%, rgba(255,255,255,.2) 72%, transparent 75% 100%);
+      transform:translateX(-60%) rotate(10deg);
+      transition:transform .8s ease;
+      pointer-events:none;
+    }
+    .card:hover::after{transform:translateX(20%) rotate(10deg)}
+    @media (prefers-reduced-motion: reduce){
+      .card,.chip,.card::after{transition:none}
+      .card:hover{transform:none}
+      .card:hover::after{transform:none}
+    }
+
+    /* footer */
+    footer{margin-top:40px;padding:24px;color:var(--muted);text-align:center}
+    .hr{height:1px;background:linear-gradient(90deg, transparent, var(--line), transparent);margin:28px 0}
+  </style>
 </head>
 <body>
-<header class="site-header blur-bg">
-  <div class="container">
-    <a class="brand" href="index.html">🍋 PinkLemon</a>
-    <nav class="nav" aria-label="主导航">
-      <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="navMenu">菜单</button>
-      <ul id="navMenu" class="nav-menu">
-        <li><a href="index.html">首页</a></li>
-        <li><a href="projects.html">项目</a></li>
-        <li><a href="about.html">关于</a></li>
-        <li><a href="guestbook.html">留言</a></li>
-        <li class="external"><a href="https://github.com/pinklemon123" target="_blank" rel="noopener">GitHub</a></li>
-        <li class="external"><a href="https://b23.tv/7z9fh8S" target="_blank" rel="noopener">Bilibili</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-<main>
+  <div class="wrap">
+    <header class="nav">
+      <div class="brand">🍋 Pinklemon</div>
+      <nav class="navlinks">
+        <a class="chip" href="/projects.html">Projects</a>
+        <a class="chip" href="https://github.com/pinklemon123" target="_blank" rel="noopener">GitHub</a>
+        <a class="chip" href="/about.html">About</a>
+        <a class="chip" href="/guestbook.html">Guestbook</a>
+      </nav>
+    </header>
 
-<!-- ===== Hero ===== -->
-<section class="hero" style="padding:64px 20px; text-align:center; backdrop-filter: blur(12px);">
-  <h1 style="font-size:40px; margin-bottom:12px;">Hi, I'm Lemon</h1>
-  <p style="opacity:.85; max-width:720px; margin:0 auto 24px;">
-    最近在折腾：Pink Mood Garden / Chat-on-Vercel / Daily News Agent
-  </p>
-  <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-    <a href="https://github.com/pinklemon123" target="_blank" rel="noopener"
-       style="padding:12px 20px; border-radius:999px; border:1px solid #4b8bff; text-decoration:none;">
-      GitHub
-    </a>
-    <a href="https://b23.tv/7z9fh8S" target="_blank" rel="noopener"
-       style="padding:12px 20px; border-radius:999px; background:#4b8bff0f; border:1px solid #4b8bff; text-decoration:none;">
-      Bilibili
-    </a>
-    <a href="/projects.html" style="padding:12px 20px; border-radius:999px; border:1px solid #999; text-decoration:none;">
-      Projects →
-    </a>
-  </div>
-</section>
-
-<!-- 背景图（可选） -->
-<style>
-  body {
-    background-image: url("https://images.unsplash.com/photo-1724865368830-4a2af2d1f7a7?q=80&w=1600&auto=format&fit=crop");
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-  }
-</style>
-
-<!-- ===== 最近更新 ===== -->
-<section style="max-width:900px; margin:48px auto; padding:0 20px;">
-  <h2 style="margin-bottom:16px;">最近更新</h2>
-  <ul style="line-height:1.9;">
-    <li><strong>2025-08-29</strong>：<a href="https://github.com/pinklemon123/pink-mood-garden" target="_blank">pink-mood-garden</a> 更新；上线 Vercel 预览。</li>
-    <li><strong>2025-08-28</strong>：<a href="https://github.com/pinklemon123/chat-on-vercel" target="_blank">chat-on-vercel</a> 更新。</li>
-    <li><strong>2025-08-27</strong>：新闻流水线相关仓库集中更新：
-      <a href="https://github.com/pinklemon123/news-1-creat" target="_blank">news-1-creat</a> /
-      <a href="https://github.com/pinklemon123/news-00-creat" target="_blank">news-00-creat</a> /
-      <a href="https://github.com/pinklemon123/news-creat" target="_blank">news-creat</a>
-    </li>
-    <li><strong>2025-08-25</strong>：个人站点仓库 <a href="https://github.com/pinklemon123/pinklemon123.github.io" target="_blank">pinklemon123.github.io</a> 页面结构调整。</li>
-  </ul>
-</section>
-<!-- 图片来源：Unsplash，作者见站点条款；如需本地化，可把图下载到 /assets 并改 src -->
-
-
-<section class="section">
-  <div class="container">
-    <h2 class="section-title">精选作品</h2>
-    <div class="cards">
-      <article class="card">
-        <img alt="数据可视化" loading="lazy"
-          src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop" />
-        <div class="card-body">
-          <h3>Graph Insight</h3>
-          <p>基于 Python/Neo4j 的图数据分析与社区发现。</p>
-          <a class="btn small" href="projects.html#graph-insight">了解更多</a>
+    <section class="hero">
+      <div>
+        <h1>Hi, 我是 Pinklemon</h1>
+        <p class="muted">喜欢把点子做成小玩具：可视化、前端模板、自动化小工具。这里记录我最近在折腾的东西和一些作品。</p>
+        <div class="badges">
+          <a class="chip badge" href="/projects.html#pink-mood-garden">Pink Mood Garden</a>
+          <a class="chip badge" href="/projects.html#chat-on-vercel">Chat on Vercel</a>
+          <a class="chip badge" href="/projects.html#daily-news-generator">Daily News Agent</a>
+          <a class="chip" href="mailto:">联系我</a>
         </div>
-      </article>
-      <article class="card">
-        <img alt="代码与终端" loading="lazy"
-          src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop" />
-        <div class="card-body">
+      </div>
+      <div class="muted">
+        <p>🔎 本站是纯静态页面，支持暗色模式。</p>
+        <p>🧪 卡片动效在低性能设备会自动降低或遵循系统“减少动态”设置。</p>
+        <p>🛠️ 代码开源在 GitHub，欢迎来逛。</p>
+      </div>
+    </section>
+
+    <!-- Now / 最近在做 -->
+    <section class="section" id="now">
+      <h2>Now / 最近在做 <span class="muted" style="font-size:0.9em">（最后更新：<span id="now-updated">加载中…</span>）</span></h2>
+      <ul id="now-list" class="muted" style="padding-left:18px;margin:8px 0 0">
+        <li><strong>Pink Mood Garden</strong> — 情绪花园可视化与交互（移动端适配与分享卡片）。</li>
+        <li><strong>Chat-on-Vercel</strong> — 轻量聊天前端模板（多模型切换、对话导出）。</li>
+        <li><strong>Daily News Generator</strong> — LLM 生成新闻页流水线（RSS 聚合、去重与来源标注）。</li>
+        <li><strong>Mini Social (Flutter)</strong> — 帖子/群聊/资料页 Demo（接入简易后端与图片上传）。</li>
+      </ul>
+    </section>
+
+    <div class="hr"></div>
+
+    <!-- 精选项目预览 -->
+    <section class="section">
+      <h2>精选 Projects</h2>
+      <div class="cards">
+        <a class="card" href="/projects.html#pink-mood-garden" id="c1">
+          <h3>Pink Mood Garden</h3>
+          <p class="muted">把心情种成一片花园，交互式可视化。</p>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag">Canvas</span></div>
+          <div class="more">看看它 <span class="chev">→</span></div>
+        </a>
+
+        <a class="card" href="/projects.html#chat-on-vercel" id="c2">
+          <h3>Chat on Vercel</h3>
+          <p class="muted">开箱即用的聊天前端模板，易于接不同后端/模型。</p>
+          <div class="tags"><span class="tag">Vercel</span><span class="tag">Template</span></div>
+          <div class="more">看看它 <span class="chev">→</span></div>
+        </a>
+
+        <a class="card" href="/projects.html#daily-news-generator" id="c3">
           <h3>Daily News Generator</h3>
-          <p>爬虫 + LLM 生成每日新闻页面，自动下载封面图。</p>
-          <a class="btn small" href="projects.html#daily-news">了解更多</a>
-        </div>
-      </article>
-      <article class="card">
-        <img alt="3D 场景" loading="lazy"
-          src="https://images.unsplash.com/photo-1591382696684-2f5763e1b47f?q=80&w=1200&auto=format&fit=crop" />
-        <div class="card-body">
-          <h3>Unity 互动场景</h3>
-          <p>从 Blender 导入角色，Unity 相机/材质/水波特效演示。</p>
-          <a class="btn small" href="projects.html#unity-scene">了解更多</a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
+          <p class="muted">爬虫 + LLM 自动生成每日新闻页面。</p>
+          <div class="tags"><span class="tag">LLM</span><span class="tag">Automation</span></div>
+          <div class="more">看看它 <span class="chev">→</span></div>
+        </a>
+      </div>
+    </section>
 
-<section class="section gradient">
-  <div class="container cta">
-    <h2>需要一个更酷的可视化页面？</h2>
-    <p>欢迎联系我进行定制开发或技术合作。</p>
-    <a class="btn primary" href="about.html#contact">联系我</a>
+    <footer>© <span id="y"></span> Pinklemon · Built with 🍋</footer>
   </div>
-</section>
 
-</main>
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <div>
-      <div class="brand">🍋 PinkLemon</div>
-      <p>图算法 / AI 工具链 / 可视化。</p>
-    </div>
-    <div>
-      <h4>链接</h4>
-      <ul>
-        <li><a href="https://github.com/pinklemon123" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://b23.tv/7z9fh8S" target="_blank" rel="noopener">Bilibili</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>联系</h4>
-      <ul>
-        <li><a href="mailto:eerge0994@gmail.com">eerge0994@gmail.com</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="container tiny">© <span id="year"></span> PinkLemon. All rights reserved.</div>
-</footer>
-<div class="noise"></div>
+  <script>
+    // 年份
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Now Section：从 GitHub 拉最近活跃仓库（回退到静态列表）
+    (async function () {
+      const updatedEl = document.getElementById('now-updated');
+      const listEl = document.getElementById('now-list');
+      try {
+        const resp = await fetch('https://api.github.com/users/pinklemon123/repos?sort=updated&per_page=12');
+        if (!resp.ok) throw new Error('GitHub API rate limited');
+        const targetNames = new Set([
+          'pink-mood-garden',
+          'chat-on-vercel',
+          'news-creat','news-1-creat','news-00-creat',
+          'chatpage_app'
+        ]);
+        const repos = (await resp.json()).filter(r => targetNames.has(r.name));
+        if (repos.length) {
+          listEl.innerHTML = '';
+          repos
+            .sort((a,b)=> new Date(b.pushed_at)-new Date(a.pushed_at))
+            .forEach(r=>{
+              const li = document.createElement('li');
+              const updated = new Date(r.pushed_at).toISOString().slice(0,10);
+              li.innerHTML = `<strong><a href="${r.html_url}" target="_blank" rel="noopener">${r.name}</a></strong>
+                — ${r.description || '近期更新的项目'}（最近推送：${updated}）`;
+              listEl.appendChild(li);
+            });
+          updatedEl.textContent = new Date(repos[0].pushed_at).toISOString().slice(0,10);
+        } else {
+          updatedEl.textContent = new Date().toISOString().slice(0,10);
+        }
+      } catch (e) {
+        updatedEl.textContent = new Date().toISOString().slice(0,10);
+      }
+    })();
+  </script>
 </body>
 </html>

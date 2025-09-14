@@ -1,137 +1,155 @@
-
 <!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>项目 | PinkLemon 个人网站</title>
-  <meta name="description" content="PinkLemon 的个人网站：项目、文章与联系信息。" />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-  <link rel="stylesheet" href="assets/style.css" />
-  <script defer src="assets/script.js"></script>
+  <title>Pinklemon · Projects</title>
+  <meta name="description" content="Pinklemon 的项目清单" />
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    :root{
+      --bg: #0b0c10;
+      --panel: #111218;
+      --text: #e9eef4;
+      --muted: #aab3bf;
+      --line: #1a1c25;
+      --accent: #7dd3fc;
+      --accent-2:#f472b6;
+      --shadow: rgba(0,0,0,.35);
+      --radius: 18px;
+      --maxw: 1080px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f7fafc; --panel:#ffffff; --text:#1a1f2b; --muted:#5b6472; --line:#e8edf3;
+        --shadow: rgba(2,6,23,.08);
+      }
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font:16px/1.7 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Arial, sans-serif;
+      background:
+        radial-gradient(1000px 500px at -10% 0%, rgba(125,211,252,.13), transparent 60%),
+        radial-gradient(900px 500px at 110% 100%, rgba(244,114,182,.13), transparent 60%),
+        var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:24px 20px 56px}
+    .nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    .chip{padding:9px 12px;border:1px solid var(--line);border-radius:999px}
+    .title{display:flex;align-items:flex-end;gap:12px}
+    .title h1{margin:10px 0 0}
+    .muted{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    @media (max-width:960px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.grid{grid-template-columns:1fr}}
+    .card{
+      position:relative;overflow:hidden;
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.03)), var(--panel);
+      padding:18px;min-height:170px;
+      transition:transform .25s ease, box-shadow .25s ease, border-color .2s ease, background .2s ease;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 24px 40px var(--shadow);border-color:transparent}
+    .card h3{margin:2px 0 6px}
+    .desc{margin:4px 0 10px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+    .meta{margin-top:10px;font-size:13px;color:var(--muted)}
+    .links{display:flex;gap:12px;margin-top:10px;font-weight:600}
+    .hr{height:1px;background:linear-gradient(90deg, transparent, var(--line), transparent);margin:28px 0}
+  </style>
 </head>
 <body>
-<header class="site-header blur-bg">
-  <div class="container">
-    <a class="brand" href="index.html">🍋 PinkLemon</a>
-    <nav class="nav" aria-label="主导航">
-      <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="navMenu">菜单</button>
-      <ul id="navMenu" class="nav-menu">
-        <li><a href="index.html">首页</a></li>
-        <li><a href="projects.html">项目</a></li>
-        <li><a href="about.html">关于</a></li>
-        <li><a href="guestbook.html">留言</a></li>
-        <li class="external"><a href="https://github.com/pinklemon123" target="_blank" rel="noopener">GitHub</a></li>
-        <li class="external"><a href="https://b23.tv/7z9fh8S" target="_blank" rel="noopener">Bilibili</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-<main>
+  <div class="wrap">
+    <header class="nav">
+      <div><a class="chip" href="/">← 返回首页</a></div>
+      <nav class="muted"><a class="chip" href="https://github.com/pinklemon123" target="_blank" rel="noopener">GitHub</a></nav>
+    </header>
 
-<section class="page-head">
-  <div class="container">
-    <h1>项目</h1>
-    <p class="lead">部分代表性工作与开源仓库。</p>
-  </div>
-</section>
+    <div class="title">
+      <h1>Projects</h1>
+      <span class="muted">一些我做过/在做的小东西</span>
+    </div>
+    <div class="hr"></div>
 
-<section style="max-width:1100px; margin:40px auto; padding:0 20px;">
-  <h1 style="margin-bottom:20px;">Projects</h1>
-
-  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px;">
-    <!-- Pink Mood Garden -->
-    <article style="background:#0b0f1a; border:1px solid #1e2a44; border-radius:16px; overflow:hidden;">
-      <img alt="Pink Mood Garden preview"
-           src="https://images.unsplash.com/photo-1514517220032-1212f0b0b1ff?q=80&w=1200&auto=format&fit=crop"
-           style="width:100%; height:160px; object-fit:cover;">
-      <div style="padding:14px 16px;">
-        <h3 style="margin:0 0 6px;">Pink Mood Garden</h3>
-        <p style="opacity:.85; margin:0 0 12px;">
-          轻量粉色系情绪花园：匿名心情、小纸条、心情日历、PWA。
-        </p>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a href="https://pink-mood-garden.vercel.app/" target="_blank" rel="noopener">Live Demo</a>
+    <div class="grid" id="project-grid">
+      <!-- Pink Mood Garden -->
+      <article class="card" id="pink-mood-garden">
+        <h3>Pink Mood Garden</h3>
+        <p class="desc muted">把心情种成花园的可视化小工具，交互种植、观察变化。</p>
+        <div class="tags">
+          <span class="tag">JavaScript</span><span class="tag">Canvas</span>
+        </div>
+        <div class="links">
           <a href="https://github.com/pinklemon123/pink-mood-garden" target="_blank" rel="noopener">GitHub</a>
         </div>
-      </div>
-    </article>
+        <div class="meta" data-repo="pinklemon123/pink-mood-garden">最近推送：<span>—</span></div>
+      </article>
 
-    <!-- Chat on Vercel -->
-    <article style="background:#0b0f1a; border:1px solid #1e2a44; border-radius:16px; overflow:hidden;">
-      <img alt="Chat on Vercel preview"
-           src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop"
-           style="width:100%; height:160px; object-fit:cover;">
-      <div style="padding:14px 16px;">
-        <h3 style="margin:0 0 6px;">Chat-on-Vercel</h3>
-        <p style="opacity:.85; margin:0 0 12px;">
-          纯前端/极简聊天 UI，支持提示词配置与页面联动优化。
-        </p>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a href="https://chat-on-vercel.vercel.app/" target="_blank" rel="noopener">Live Demo</a>
+      <!-- Chat on Vercel -->
+      <article class="card" id="chat-on-vercel">
+        <h3>Chat on Vercel</h3>
+        <p class="desc muted">轻量聊天前端模板，适配不同后端/模型，适合快速试验。</p>
+        <div class="tags"><span class="tag">Vercel</span><span class="tag">Template</span></div>
+        <div class="links">
           <a href="https://github.com/pinklemon123/chat-on-vercel" target="_blank" rel="noopener">GitHub</a>
         </div>
-      </div>
-    </article>
+        <div class="meta" data-repo="pinklemon123/chat-on-vercel">最近推送：<span>—</span></div>
+      </article>
 
-    <!-- Daily News Agent -->
-    <article style="background:#0b0f1a; border:1px solid #1e2a44; border-radius:16px; overflow:hidden;">
-      <img alt="Daily News Agent preview"
-           src="https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=1200&auto=format&fit=crop"
-           style="width:100%; height:160px; object-fit:cover;">
-      <div style="padding:14px 16px;">
-        <h3 style="margin:0 0 6px;">Daily News Agent</h3>
-        <p style="opacity:.85; margin:0 0 12px;">
-          爬取网页→AI 总结→生成 HTML 的一键流水线（多仓协同）。
-        </p>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <!-- Daily News Generator -->
+      <article class="card" id="daily-news-generator">
+        <h3>Daily News Generator</h3>
+        <p class="desc muted">爬虫 + LLM 自动生成每日新闻页；支持聚合与去重。</p>
+        <div class="tags"><span class="tag">LLM</span><span class="tag">Automation</span></div>
+        <div class="links">
+          <a href="https://github.com/pinklemon123/news-creat" target="_blank" rel="noopener">news-creat</a>
           <a href="https://github.com/pinklemon123/news-1-creat" target="_blank" rel="noopener">news-1-creat</a>
           <a href="https://github.com/pinklemon123/news-00-creat" target="_blank" rel="noopener">news-00-creat</a>
-          <a href="https://github.com/pinklemon123/news-creat" target="_blank" rel="noopener">news-creat</a>
         </div>
-      </div>
-    </article>
+        <div class="meta" data-repo="pinklemon123/news-creat">最近推送：<span>—</span></div>
+      </article>
+
+      <!-- Mini Social (Flutter) -->
+      <article class="card" id="mini-social">
+        <h3>Mini Social (Flutter)</h3>
+        <p class="desc muted">帖子流 / 群聊 / 资料页的移动端 Demo（前端演示版）。</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Mobile</span></div>
+        <div class="links">
+          <a href="https://github.com/pinklemon123/chatpage_app" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="meta" data-repo="pinklemon123/chatpage_app">最近推送：<span>—</span></div>
+      </article>
+    </div>
+
+    <div class="hr"></div>
+    <p class="muted">更多项目可以在 <a href="https://github.com/pinklemon123" target="_blank" rel="noopener">GitHub</a> 上找到。</p>
   </div>
 
-  <!-- 图片来源：全部 Unsplash 背景图，便于商用/个人站。可按需替换为你自己的截图 -->
-</section>
-
-
-<section class="section gradient">
-  <div class="container">
-    <h2>更多内容</h2>
-    <p>想看实时进展与 demo？欢迎关注我的 GitHub 与 Bilibili。</p>
-    <div class="actions">
-      <a class="btn primary" target="_blank" rel="noopener" href="https://github.com/pinklemon123">GitHub</a>
-      <a class="btn ghost" target="_blank" rel="noopener" href="https://b23.tv/7z9fh8S">Bilibili</a>
-    </div>
-  </div>
-</section>
-
-</main>
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <div>
-      <div class="brand">🍋 PinkLemon</div>
-      <p>图算法 / AI 工具链 / 可视化。</p>
-    </div>
-    <div>
-      <h4>链接</h4>
-      <ul>
-        <li><a href="https://github.com/pinklemon123" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://b23.tv/7z9fh8S" target="_blank" rel="noopener">Bilibili</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>联系</h4>
-      <ul>
-        <li><a href="mailto:hello@example.com">hello@example.com</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="container tiny">© <span id="year"></span> PinkLemon. All rights reserved.</div>
-</footer>
-<div class="noise"></div>
+  <script>
+    // 可选增强：拉取每个卡片的最近推送时间
+    (async function(){
+      const metas = Array.from(document.querySelectorAll('.meta[data-repo]'));
+      if (!metas.length) return;
+      try{
+        const fetchRepo = async (full) => {
+          const resp = await fetch(`https://api.github.com/repos/${full}`);
+          if(!resp.ok) throw new Error('rate limited');
+          return await resp.json();
+        };
+        for (const m of metas){
+          const repo = m.getAttribute('data-repo');
+          try{
+            const r = await fetchRepo(repo);
+            const t = new Date(r.pushed_at).toISOString().slice(0,10);
+            m.querySelector('span').textContent = t;
+          }catch(e){ /* 静默失败，保留 — */ }
+        }
+      }catch(e){ /* 静默失败 */ }
+    })();
+  </script>
 </body>
 </html>

@@ -1,104 +1,125 @@
-
 <!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>关于 | PinkLemon 个人网站</title>
-  <meta name="description" content="PinkLemon 的个人网站：项目、文章与联系信息。" />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-  <link rel="stylesheet" href="assets/style.css" />
-  <script defer src="assets/script.js"></script>
+  <title>Pinklemon · About</title>
+  <meta name="description" content="关于 Pinklemon" />
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    :root{
+      --bg:#0b0c10; --panel:#111218; --text:#e9eef4; --muted:#aab3bf; --line:#1a1c25;
+      --accent:#7dd3fc; --accent-2:#f472b6; --shadow:rgba(0,0,0,.35); --radius:18px; --maxw:880px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f7fafc; --panel:#fff; --text:#1a1f2b; --muted:#5b6472; --line:#e8edf3; --shadow:rgba(2,6,23,.08); }
+    }
+    *{box-sizing:border-box} body{margin:0;background:
+      radial-gradient(1000px 500px at -10% 0%, rgba(125,211,252,.13), transparent 60%),
+      radial-gradient(900px 500px at 110% 100%, rgba(244,114,182,.13), transparent 60%),
+      var(--bg); color:var(--text);
+      font:16px/1.7 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Arial, sans-serif;}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:24px 20px 56px}
+    .nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    .chip{padding:9px 12px;border:1px solid var(--line);border-radius:999px}
+    .panel{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.03)), var(--panel);box-shadow:0 18px 36px var(--shadow);padding:20px}
+    .muted{color:var(--muted)}
+    .title{display:flex;align-items:flex-end;gap:12px}
+    .section{margin-top:24px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media (max-width:800px){.grid{grid-template-columns:1fr}}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+    .hr{height:1px;background:linear-gradient(90deg, transparent, var(--line), transparent);margin:28px 0}
+    .kvs{display:grid;grid-template-columns:1fr 2fr;gap:10px}
+    @media (max-width:640px){.kvs{grid-template-columns:1fr}}
+    .li{padding-left:18px;margin:0}
+  </style>
 </head>
 <body>
-<header class="site-header blur-bg">
-  <div class="container">
-    <a class="brand" href="index.html">🍋 PinkLemon</a>
-    <nav class="nav" aria-label="主导航">
-      <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="navMenu">菜单</button>
-      <ul id="navMenu" class="nav-menu">
-        <li><a href="index.html">首页</a></li>
-        <li><a href="projects.html">项目</a></li>   
-        <li><a href="about.html">关于</a></li>
-        <li><a href="guestbook.html">留言</a></li>
-        <li class="external"><a href="https://github.com/pinklemon123" target="_blank" rel="noopener">GitHub</a></li>
-        <li class="external"><a href="https://b23.tv/7z9fh8S" target="_blank" rel="noopener">Bilibili</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-<main>
+  <div class="wrap">
+    <header class="nav">
+      <div><a class="chip" href="/">← 返回首页</a></div>
+      <nav class="muted">
+        <a class="chip" href="/projects.html">Projects</a>
+        <a class="chip" href="https://github.com/pinklemon123" target="_blank" rel="noopener">GitHub</a>
+        <a class="chip" href="/guestbook.html">Guestbook</a>
+      </nav>
+    </header>
 
-<section class="page-head">
-  <div class="container">
-    <h1>关于我</h1>
-    <p class="lead">热爱把复杂系统变成优雅的界面与体验。</p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container two-col">
-    <div>
-      <h2>简介</h2>
-      <p>你好！我专注于图算法、AI 应用与可视化工程。在 Windows/WSL/Docker 环境下构建端到端的自动化流水线，
-      包括数据抓取、LLM 分析、前端页面生成与部署。</p>
-      <ul class="ticks">
-        <li>图分析：最短路径、社区发现、Jaccard 等</li>
-        <li>AI 应用：RAG、Agents、可视化报告</li>
-        <li>三维与多媒体：Unity 场景、Shader 与动画</li>
-      </ul>
-    </div>
-    <aside class="profile">
-      <img alt="个人头像抽象图" loading="lazy"
-        src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=1200&auto=format&fit=crop" />
-      <div class="links">
-        <a class="btn small" href="https://github.com/pinklemon123" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn small" href="https://b23.tv/7z9fh8S" target="_blank" rel="noopener">Bilibili</a>
+    <div class="panel">
+      <div class="title">
+        <h1>About</h1>
+        <span class="muted">你好，我是 Pinklemon 🍋</span>
       </div>
-    </aside>
-  </div>
-</section>
+      <div class="hr"></div>
 
-<section id="contact" class="section gradient">
-  <div class="container">
-    <h2>联系我</h2>
-    <form class="contact" onsubmit="return submitContact(event)">
-      <label>你的邮箱
-        <input type="email" name="email" placeholder="you@example.com" required>
-      </label>
-      <label>消息
-        <textarea name="message" rows="4" placeholder="Hi！我想与你合作..." required></textarea>
-      </label>
-      <button class="btn primary" type="submit">发送</button>
-      <p class="tiny">（演示表单：提交后在本页显示，不会真的发送）</p>
-    </form>
-  </div>
-</section>
+      <section class="section">
+        <div class="kvs">
+          <div class="muted">简介</div>
+          <div>喜欢把点子做成小玩具：可视化、前端模板、自动化脚本和移动端 Demo。这个站记录我做过 & 正在做的东西。</div>
 
-</main>
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <div>
-      <div class="brand">🍋 PinkLemon</div>
-      <p>图算法 / AI 工具链 / 可视化。</p>
-    </div>
-    <div>
-      <h4>链接</h4>
-      <ul>
-        <li><a href="https://github.com/pinklemon123" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://b23.tv/7z9fh8S" target="_blank" rel="noopener">Bilibili</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>联系</h4>
-      <ul>
-        <li><a href="mailto:hello@example.com">hello@example.com</a></li>
-      </ul>
+          <div class="muted">现在关注</div>
+          <div class="li">
+            <ul>
+              <li>🌼 <strong>Pink Mood Garden</strong>：心情可视化与交互</li>
+              <li>💬 <strong>Chat on Vercel</strong>：轻量聊天前端模板</li>
+              <li>📰 <strong>Daily News Generator</strong>：RSS/爬虫 + LLM 的新闻流水线</li>
+              <li>📱 <strong>Mini Social (Flutter)</strong>：帖子 / 群聊 / 资料页 Demo</li>
+            </ul>
+          </div>
+
+          <div class="muted">技能</div>
+          <div class="tags">
+            <span class="tag">JavaScript</span><span class="tag">HTML/CSS</span><span class="tag">Canvas</span>
+            <span class="tag">Vercel</span><span class="tag">Automation</span><span class="tag">Flutter</span>
+          </div>
+
+          <div class="muted">联络</div>
+          <div>
+            GitHub：<a href="https://github.com/pinklemon123" target="_blank" rel="noopener">@pinklemon123</a><br/>
+            想交流？可以在 <a href="/guestbook.html">Guestbook</a> 留言。
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>时间线 / Timeline</h2>
+        <p class="muted" id="now-updated">最近更新：—</p>
+        <div class="grid" id="tl">
+          <div class="panel">
+            <h3>Pink Mood Garden</h3>
+            <p class="muted">交互与移动端优化进行中。</p>
+          </div>
+          <div class="panel">
+            <h3>Chat on Vercel</h3>
+            <p class="muted">增加多模型切换与会话导出。</p>
+          </div>
+          <div class="panel">
+            <h3>Daily News Generator</h3>
+            <p class="muted">整合 RSS 聚合、去重与来源标注。</p>
+          </div>
+          <div class="panel">
+            <h3>Mini Social (Flutter)</h3>
+            <p class="muted">考虑接入简易后端与图片上传。</p>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
-  <div class="container tiny">© <span id="year"></span> PinkLemon. All rights reserved.</div>
-</footer>
-<div class="noise"></div>
+
+  <script>
+    // 从 GitHub 拉一个“最近更新时间”戳
+    (async function(){
+      const t = document.getElementById('now-updated');
+      try{
+        const resp = await fetch('https://api.github.com/users/pinklemon123/repos?sort=updated&per_page=1');
+        if(!resp.ok) throw new Error();
+        const [r] = await resp.json();
+        if(r && r.pushed_at) t.textContent = "最近更新：" + new Date(r.pushed_at).toISOString().slice(0,10);
+      }catch(e){ /* 静默失败 */ }
+    })();
+  </script>
 </body>
 </html>
