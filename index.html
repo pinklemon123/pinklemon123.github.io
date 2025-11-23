@@ -139,18 +139,21 @@
     <section class="hero">
       <div>
         <h1>Hi, 我是 Pinklemon</h1>
-        <p class="muted">喜欢把点子做成小玩具：可视化、前端模板、自动化小工具。这里记录我最近在折腾的东西和一些作品。</p>
+        <p class="muted">
+          喜欢把点子做成小玩具：可视化、前端模板、自动化小工具，也在折腾单细胞建模、
+          PDF 可视化翻译、论坛 + Open Design 以及 Blender × AI 建模小助手。
+        </p>
         <div class="badges">
           <a class="chip badge" href="/projects.html#pink-mood-garden">Pink Mood Garden</a>
-          <a class="chip badge" href="/projects.html#chat-on-vercel">Chat on Vercel</a>
-          <a class="chip badge" href="/projects.html#daily-news-generator">Daily News Agent</a>
+          <a class="chip badge" href="/projects.html#open-design">Open Design &amp; Forum</a>
+          <a class="chip badge" href="/projects.html#pdf-translator">PDF Visual Translator</a>
           <a class="chip" href="mailto:">联系我</a>
         </div>
       </div>
       <div class="muted">
         <p>🔎 本站是纯静态页面，支持暗色模式。</p>
         <p>🧪 卡片动效在低性能设备会自动降低或遵循系统“减少动态”设置。</p>
-        <p>🛠️ 代码开源在 GitHub，欢迎来逛。</p>
+        <p>🛠️ 代码开源在 GitHub，最近主要活跃在论坛 / PDF 翻译 / 单细胞模型和 Blender 插件这几块。</p>
       </div>
     </section>
 
@@ -158,10 +161,10 @@
     <section class="section" id="now">
       <h2>Now / 最近在做 <span class="muted" style="font-size:0.9em">（最后更新：<span id="now-updated">加载中…</span>）</span></h2>
       <ul id="now-list" class="muted" style="padding-left:18px;margin:8px 0 0">
-        <li><strong>Pink Mood Garden</strong> — 情绪花园可视化与交互（移动端适配与分享卡片）。</li>
-        <li><strong>Chat-on-Vercel</strong> — 轻量聊天前端模板（多模型切换、对话导出）。</li>
-        <li><strong>Daily News Generator</strong> — LLM 生成新闻页流水线（RSS 聚合、去重与来源标注）。</li>
-        <li><strong>Mini Social (Flutter)</strong> — 帖子/群聊/资料页 Demo（接入简易后端与图片上传）。</li>
+        <li><strong>Open Design &amp; Forum</strong> — 轻量论坛 + 设计作品上传展示，支持用户页、关注、开放设计画廊。</li>
+        <li><strong>PDF Visual Translator</strong> — 一页式 PDF 可视化翻译工具，做版面解析 + 英汉互译。</li>
+        <li><strong>Single-cell Modeling</strong> — 在 GPU 上跑 scGPT / scMTNI / CellNEST，做聚类、扰动预测与细胞通讯分析。</li>
+        <li><strong>Blender × AI Modeling Helper</strong> — 把 LLM 接入 Blender，尝试用自然语言控制建模和场景微调。</li>
       </ul>
     </section>
 
@@ -191,6 +194,20 @@
           <div class="tags"><span class="tag">LLM</span><span class="tag">Automation</span></div>
           <div class="more">看看它 <span class="chev">→</span></div>
         </a>
+
+        <a class="card" href="/projects.html#open-design" id="c4">
+          <h3>Open Design &amp; Forum</h3>
+          <p class="muted">轻量论坛 + 设计作品展示区，支持开放上传和在线预览。</p>
+          <div class="tags"><span class="tag">Vercel</span><span class="tag">Neon</span></div>
+          <div class="more">看看它 <span class="chev">→</span></div>
+        </a>
+
+        <a class="card" href="/projects.html#pdf-translator" id="c5">
+          <h3>PDF Visual Translator</h3>
+          <p class="muted">一页一页翻译 PDF，保留版面结构的可视化翻译器。</p>
+          <div class="tags"><span class="tag">OCR</span><span class="tag">LLM</span></div>
+          <div class="more">看看它 <span class="chev">→</span></div>
+        </a>
       </div>
     </section>
 
@@ -212,7 +229,9 @@
           'pink-mood-garden',
           'chat-on-vercel',
           'news-creat','news-1-creat','news-00-creat',
-          'chatpage_app'
+          'chatpage_app',
+          'fluffy-octo-palm-tree',
+          'upgraded-octo-parakeet'
         ]);
         const repos = (await resp.json()).filter(r => targetNames.has(r.name));
         if (repos.length) {

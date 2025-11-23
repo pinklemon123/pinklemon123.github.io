@@ -58,15 +58,22 @@
       <section class="section">
         <div class="kvs">
           <div class="muted">简介</div>
-          <div>喜欢把点子做成小玩具：可视化、前端模板、自动化脚本和移动端 Demo。这个站记录我做过 & 正在做的东西。</div>
+          <div>
+            喜欢把点子做成小玩具：可视化、前端模板、自动化脚本和小实验站点。
+            最近也在折腾单细胞 / 空间组学的模型和 Blender × AI 的工作流，让这些“玩具”慢慢长成完整的创作工具链。
+          </div>
 
           <div class="muted">现在关注</div>
           <div class="li">
             <ul>
               <li>🌼 <strong>Pink Mood Garden</strong>：心情可视化与交互</li>
               <li>💬 <strong>Chat on Vercel</strong>：轻量聊天前端模板</li>
-              <li>📰 <strong>Daily News Generator</strong>：RSS/爬虫 + LLM 的新闻流水线</li>
+              <li>📰 <strong>Daily News Generator</strong>：RSS / 爬虫 + LLM 的新闻流水线</li>
               <li>📱 <strong>Mini Social (Flutter)</strong>：帖子 / 群聊 / 资料页 Demo</li>
+              <li>🧵 <strong>Open Design &amp; Forum</strong>：开放作品展示 + 论坛实验站</li>
+              <li>📄 <strong>PDF Visual Translator</strong>：一页式 PDF 可视化翻译工具</li>
+              <li>🧬 <strong>Single-cell Modeling</strong>：scGPT / scMTNI / CellNEST 等模型实验</li>
+              <li>🧱 <strong>Blender × AI Helper</strong>：用自然语言协助建模与场景编辑</li>
             </ul>
           </div>
 
@@ -74,6 +81,7 @@
           <div class="tags">
             <span class="tag">JavaScript</span><span class="tag">HTML/CSS</span><span class="tag">Canvas</span>
             <span class="tag">Vercel</span><span class="tag">Automation</span><span class="tag">Flutter</span>
+            <span class="tag">Python</span><span class="tag">LLM</span><span class="tag">Blender</span>
           </div>
 
           <div class="muted">联络</div>
@@ -90,19 +98,39 @@
         <div class="grid" id="tl">
           <div class="panel">
             <h3>Pink Mood Garden</h3>
-            <p class="muted">交互与移动端优化进行中。</p>
+            <p class="muted">
+              把心情种成一片花园，用点和颜色记录状态；现在主要在补交互细节和移动端体验。
+            </p>
           </div>
           <div class="panel">
             <h3>Chat on Vercel</h3>
-            <p class="muted">增加多模型切换与会话导出。</p>
+            <p class="muted">
+              一个可以换后端 / 换模型的聊天前端模板，用来快速接入不同 API，测试新模型和对话体验。
+            </p>
           </div>
           <div class="panel">
             <h3>Daily News Generator</h3>
-            <p class="muted">整合 RSS 聚合、去重与来源标注。</p>
+            <p class="muted">
+              把 RSS / 爬虫抓来的内容做聚合、去重和来源标注，再交给大模型生成简洁的“每日新闻板”。
+            </p>
           </div>
           <div class="panel">
-            <h3>Mini Social (Flutter)</h3>
-            <p class="muted">考虑接入简易后端与图片上传。</p>
+            <h3>Open Design &amp; Forum</h3>
+            <p class="muted">
+              轻量论坛 + Open Design 画廊：支持用户登录、发帖、关注，并允许任何人上传 HTML / 设计作品在线预览。
+            </p>
+          </div>
+          <div class="panel">
+            <h3>PDF Visual Translator</h3>
+            <p class="muted">
+              一页一页阅读 PDF 的同时做英汉互译。底层通过版面解析模型把页面拆成 JSON，再调用大模型翻译，尽量保留原有排版。
+            </p>
+          </div>
+          <div class="panel">
+            <h3>Single-cell &amp; Blender Experiments</h3>
+            <p class="muted">
+              一边在远程 GPU 上跑 scGPT / scMTNI / CellNEST，做单细胞与空间组学分析；一边把大模型接入 Blender，让 AI 能看见场景、理解操作并给出建模建议。
+            </p>
           </div>
         </div>
       </section>
